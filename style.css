@@ -1,0 +1,203 @@
+/* fonts: PT Mono and Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+
+body {
+    font-size: 16px;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.bg-black {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bg-blue {
+    background-color: #14213D;
+}
+
+nav {
+    width: 100vw;
+    height: 100px;
+}
+
+.logo-container {
+    width: 124px;
+    height: 60px;
+    background-color: grey;
+    float: left;
+    margin: 20px 0px 0px 100px;
+    text-align: center;
+}
+
+/* remove this once logo is given */
+.logo-container>h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    line-height: 60px;
+
+}
+
+.link-container {
+    width: 511px;
+    height: 100px;
+    /* border: 1px solid white; */
+    float: right;
+    color: white;
+    display: flex;
+    margin-right: 100px;
+}
+
+.link-container>ul {
+    width: 100%;
+    display: inline-block;
+    /* background-color: red; */
+}
+
+.link-container>ul>li {
+    font-family: 'PT Mono', serif;
+    display: inline;
+    line-height: 100px;
+    font-size: 24px;
+    /* margin: 0px 25px; */
+    margin: auto;
+    /* background-color: white; */
+}
+
+.link-container>ul>li:nth-of-type(2) {
+    margin: 0 40px;
+}
+
+/* .font_pt-serif {
+    font-family: 'PT Serif', serif;
+}
+
+.font_open-sans {
+    font-family: 'Open Sans', sans-serif;
+} */
+
+/* .font_weight-bold {
+    font-weight: bold;
+} */
+
+.font_weight-normal {
+    font-weight: normal;
+}
+
+.book-now:after {
+    content: "Book Now";
+    font-family: 'PT Serif', serif;
+}
+
+.main-header {
+    font-size: 64px;
+    font-family: 'PT Serif', serif;
+    /* position: absolute; */
+    margin-top: 116px;
+    margin-left: 100px;
+    color: white;
+    width: 520px;
+    line-height: 85px;
+    font-weight: bold;
+
+}
+
+.main-sub-header {
+    font-size: 32px;
+    font-family: 'PT Serif', serif;
+    margin-top: 42px;
+    margin-left: 100px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.primary-btn {
+    margin-top: 32px;
+    margin-left: 100px;
+    width: 189px;
+    height: 49px;
+    border-radius: 25px;
+    font-size: 24px;
+    border: none;
+    font-weight: bold;
+
+}
+
+.main-image {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    top: 233px;
+    right: 194px;
+    background-color: grey;
+}
+
+.service_header {
+    font-weight: bold;
+    font-family: 'PT Serif', serif;
+    font-size: 36px;
+    text-align: center;
+    color: white;
+    margin-top: 120px;
+}
+
+.service_item_container {
+    display: flex;
+    width: 1000px;
+    height: 416px;
+    margin: 100px auto 0px auto;
+    justify-content: space-between;
+    /* align-content: center; */
+    flex-wrap: nowrap;
+
+    /* background-color: grey; */
+
+}
+
+.service_item {
+    display: inline-flex;
+    width: 270px;
+    height: 100%;
+    flex-wrap: wrap;
+    /* background-color: red; */
+    /* border: 2px solid black; */
+
+
+}
+
+.service_item_icon_container {
+    width: 100%;
+    height: 80px;
+    /* background-color: hotpink; */
+    display: inline;
+    text-align: center;
+}
+
+.service_item_text_container {
+    width: 100%;
+    height: 320px;
+    display: inline;
+    /* background-color: fuchsia */
+}
+
+.service_item_text_container h2 {
+    color: white;
+    font-family: 'PT Serif', serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.service_item_text_container p {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    font-size: 18px;
+    padding: 10px 0px;
+    line-height: 25px;
+}
+
+.service_item_icon {
+    margin-top: 12px;
+}
