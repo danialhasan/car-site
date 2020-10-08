@@ -163,8 +163,6 @@ nav {
     flex-wrap: wrap;
     /* background-color: red; */
     /* border: 2px solid black; */
-
-
 }
 
 .service_item_icon_container {
@@ -200,4 +198,82 @@ nav {
 
 .service_item_icon {
     margin-top: 12px;
+}
+
+.form-header {
+    font-size: 36px;
+    font-family: 'PT Serif', sans-serif;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#form_container {
+    width: 835px;
+    height: 680px;
+    margin: 30px auto 0px auto;
+    border: 2px white solid;
+}
+
+#form_passenger_container,
+#form_location_container {
+    min-height: 80px;
+    /* height: auto; */
+    width: 100%;
+    color: white;
+}
+
+
+#form_passenger_container {
+    border-bottom: 2px white solid;
+}
+
+
+#form_location_container h2 {
+    font-family: 'PT Serif', sans-serif;
+
+}
+
+.form_passenger_header_container {
+    font-weight: bold;
+    line-height: 100px;
+    padding-left: 58px;
+    font-family: 'PT Serif', sans-serif;
+    border-bottom: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.form_passenger_header_container h2 {
+    font-size: 24px;
+}
+
+.active-header {
+    font-size: 36px !important;
+}
+
+#form_location_container {
+    border-bottom: 2px white solid;
+    /* supposed to be border-top */
+}
+
+#form_location_container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 80px;
+    padding-left: 58px;
+}
+
+.active {
+    height: 502px !important;
+}
+
+.rates-header {
+    font-size: 36px;
+    font-family: 'PT Serif',
+        sans-serif;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
 }

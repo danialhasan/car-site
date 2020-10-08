@@ -28,6 +28,9 @@
     <div class="main-image">
     </div>
     <h2 class="service_header">Our Services</h2>
+
+    <!-- div.service_item_container>div.service_item*3>div.service_item_icon_container>img.service_item_icon^^div.service_item_text_container>h2^p -->
+
     <div class="service_item_container">
         <div class="service_item">
             <div class="service_item_icon_container">
@@ -60,8 +63,34 @@
             </div>
         </div>
     </div>
-    <div id="form_container"></div>
+    <h2 class="form-header">Book Trip</h2>
+    <div id="form_container">
+        <div id="form_passenger_container" class="active">
+            <div class="form_passenger_header_container" >
+                <h2 class="active-header">(1/2) Passenger Info</h2>
+            </div>
+            <label for="email">Email:</label>
+            <input type="text" id="emailInput" name="email">
 
+            <label for="passengerAmount"> Passenger Amount</label>
+            <input type="text" id="passengerAmountInput" name="passengerAmount">
+
+            <label for="tripType">Trip Type</label>
+            <div class="form_option_container">
+                <input type="radio" id="option1" name="tripType">
+                <label for="option1">Option 1</label>
+                <input type="radio" id="option2" name="tripType">
+                <label for="option2">Option 2</label>
+                <input type="radio" id="option3" name="tripType">
+                <label for="option3">Option 3</label>
+            </div>
+        </div>
+        <div id="form_location_container">
+            <h2>(2/2) Location Info</h2>
+        </div>
+    </div>
+    <!-- form_container WORK IN PROGRESS -->
+    <div class="rates-header">Our Rates</div>
 </body>
 <script src="script.js"></script>
 
