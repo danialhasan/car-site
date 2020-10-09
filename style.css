@@ -102,10 +102,10 @@ nav {
     font-weight: normal;
 }
 
-.book-now:after {
+/* .book-now:after {
     content: "Book Now";
     font-family: 'PT Serif', serif;
-}
+} */
 
 .main-header {
     font-size: 64px;
@@ -137,9 +137,11 @@ nav {
     height: 49px;
     border-radius: 25px;
     font-size: 24px;
-    border: none;
+    background-color:#14213D;
+    color:white;
+    border: 2px solid white;
     font-weight: bold;
-
+    font-family: 'PT Serif', serif;
 }
 
 .main-image {
@@ -462,10 +464,10 @@ footer {
 }
 
 @media only screen and (max-width: 1200px) {
-    body {
-        /* background-color: lightblue; */
-        /* border: 1px solid red; */
-    }
+    /* body {
+        background-color: lightblue; */
+        /* border: 1px solid red;
+    } */
 
     .logo-container {
         margin-left: 40px;
@@ -527,9 +529,10 @@ footer {
         /* background-color: red; */
     }
     .primary-btn{
-        border:2px solid white;
+        /* border:2px solid white; */
+        background-color:#14213D;
         display:block;
-        color:white;
+        /* color:white; */
         text-align: center;
         margin:50px auto 0px auto;
     }
