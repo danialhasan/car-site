@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/a49e873e34.js" crossorigin="anonymous"></script>
     <link href="reset.css" type="text/css" rel="stylesheet">
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
@@ -68,31 +69,65 @@
             </div>
         </div>
     </div>
+
     <h2 class="form-header">Book Trip</h2>
     <!-- form_container WORK IN PROGRESS -->
     <div id="form_container">
         <div id="form_passenger_container" class="active">
             <div class="form_passenger_header_container">
-                <h2 class="active-header">(1/2) Passenger Info</h2>
+                <h2>(1/2) Passenger Info</h2>
             </div>
-            <label for="email">Email:</label>
-            <input type="text" id="emailInput" name="email">
+            <div class="form_passenger_content_container active_content">
+                <div class="form_content_container">
+                    <label id="email" for="email" class="email_label">Email:</label>
+                    <div class="input_icon">
+                        <i class="far fa-envelope"></i>
+                        <input type="text" id="emailInput" name="email" placeholder="Email...">
+                    </div>
+                </div>
+    
+                
+             <div class="form_content_container">
+                <label id="passengerAmount" for="passengerAmount" class="passengerAmount_label">Passenger Amount:</label>
+                <div class="input_icon">
+                    <i class="far fa-user"></i>
+                     <input type="text" id="passengerInput" name="passengerAmount" placeholder="Passenger Amount...">
+                </div> 
+            </div>
+         
+            <div class="form_content_container">
+                <label for="tripType" id="tripType_label">Trip Type</label>
+                <div class="form_option_container">
+                    
+                    <div class="option_container">
+                    <input type="radio" id="option1" name="tripType">
+                    <label for="option1">Option 1</label>
+                    </div>
 
-            <label for="passengerAmount"> Passenger Amount</label>
-            <input type="text" id="passengerAmountInput" name="passengerAmount">
+                    <div class="option_container">
+                    <input type="radio" id="option2" name="tripType">
+                    <label for="option2">Option 2</label>
+                    </div>
 
-            <label for="tripType">Trip Type</label>
-            <div class="form_option_container">
-                <input type="radio" id="option1" name="tripType">
-                <label for="option1">Option 1</label>
-                <input type="radio" id="option2" name="tripType">
-                <label for="option2">Option 2</label>
-                <input type="radio" id="option3" name="tripType">
-                <label for="option3">Option 3</label>
+                    <div class="option_container">
+                    <input type="radio" id="option3" name="tripType">
+                    <label for="option3">Option 3</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form_submit_wrapper">
+                <button id="form_submit" class="primary-btn">Submit</button>
+                <!--
+                    when this button is clicked, verify info is filled. Then, remove active class
+                    from the passenger section and activate it on the location section. 
+                -->
+            </div>
             </div>
         </div>
         <div id="form_location_container">
-            <h2>(2/2) Location Info</h2>
+            <div class="form_location_header_container">
+                <h2>(2/2) Location Info</h2>
+            </div>
         </div>
     </div>
 

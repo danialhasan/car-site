@@ -143,7 +143,15 @@ nav {
     font-weight: bold;
     font-family: 'PT Serif', serif;
 }
-
+.form_submit_wrapper{
+    width:100%;
+    /* background-color: red; */
+    text-align:right;
+}
+#form_submit{
+    margin:20px 40px;
+    /* float:right; */
+}
 .main-image {
     position: absolute;
     width: 450px;
@@ -237,10 +245,10 @@ nav {
 
 #form_container {
     width: 835px;
-    height: 680px;
+    height: auto;
     margin: 30px auto 0px auto;
-    /* border: 2px white solid; */
-    border: 2px red solid;
+    border: 2px white solid;
+    /* border: 2px red solid; */
 }
 
 #form_passenger_container,
@@ -273,15 +281,18 @@ nav {
 }
 
 .form_passenger_header_container h2 {
-    font-size: 24px;
+    font-size: 36px;
+    /* only 36px when this part of form is open */
 }
-
-.active-header {
-    font-size: 36px !important;
+.form_location_header_container{
+    background-color: rgba(0, 0, 0, 0.5);
 }
+/* .active-header {
+    font-size: 36px;
+} */
 
 #form_location_container {
-    border-bottom: 2px white solid;
+    border: 2px white solid;
     /* supposed to be border-top */
 }
 
@@ -292,10 +303,130 @@ nav {
     padding-left: 58px;
 }
 
-.active {
-    height: 502px !important;
+.form_content_container:nth-of-type(1){
+    float:left;
+    margin-left:40px;
+    margin-top:28px;
+}
+.form_content_container:nth-of-type(2){
+    float:right;
+    margin-right:40px;
+    margin-top:28px;
+}
+.form_content_container:nth-of-type(3){
+    clear:both;
+    margin:0px auto;
+    padding-top:20px;
+    /* border:1px solid yellow; */
+    width:750px;
+}
+#tripType_label{
+    font-family:"Open Sans", sans-serif;
+    font-size:36px;
+    /* margin: 20px 0px; */
 }
 
+.form_option_container{
+    border:2px solid white;
+    width:100%;
+    height:190px;
+    margin-top:20px;
+}
+.option_container{
+    float:left;
+    clear:both;
+    /* border:1px solid red; */
+    font-size:24px;
+    font-family:'Open Sans', sans-serif;
+    margin:15px 30px;
+}
+.option_container:first-of-type{
+    margin-top:20px;
+}
+
+.option_container input{
+    /* display:inline; */
+    /* clear:both; */
+    margin:0px auto;
+    height:24px;
+    width:24px;
+}
+
+.input_icon{
+    width:330px;
+    height:50px;
+    border:2px solid white;
+    background-color:rgba(0, 0, 0, 0);
+    font-family:"Open Sans", sans-serif;
+    font-size:24px;
+    padding-left:10px;
+    margin-top:10px;
+}
+/* .input_icon:first-of-type{
+    email part of form 
+    float:left;
+    margin-left:58px;
+    margin-top:60px;
+    margin-left:60px;
+} */
+
+.email_label{
+    display:block;
+    /* float:left; */
+    /* margin-top:28px; */
+    /* margin-left:58px; */
+    font-family:"Open Sans", sans-serif;
+    font-size:36px;
+}
+.input_icon:nth-of-type(2){
+    /* margin-left:448px; */
+    float:right;
+    margin-right:0px;
+    margin-top:10px;
+}
+.passengerAmount_label{
+    display:block;
+    /* float:right; */
+    /* margin-top:28px;
+    margin-left:58px; */
+    font-family:"Open Sans", sans-serif;
+    font-size:36px;
+}
+.input_icon i{
+    line-height: 50px;
+    /* border:1px solid red; */
+    margin:0;
+    padding:0;
+}
+
+input[type=text]{
+    /* width:330px;
+    height:50px; */
+    /* border:2px solid white;
+    background-color:rgba(0, 0, 0, 0);
+    font-family:"Open Sans", sans-serif;
+    font-size:24px;
+    color:white;
+    padding-left:50px; */
+    /* padding-left:10px; */
+    border:none;
+    background-color:rgba(0, 0, 0, 0);
+    font-family:"Open Sans", sans-serif;
+    font-size:24px;
+    color:white;
+    /* padding:0 0 0 10px; */
+    margin:0;
+    height:100%;
+    width:270px;
+    background-color:rgba(0, 0, 0, 0);
+    
+}
+.active {
+    /* height: 502px; */
+}
+.active_content{
+    display:block;
+}
 .rates-header {
     font-size: 36px;
     font-family: 'PT Serif',
@@ -536,6 +667,13 @@ footer {
         text-align: center;
         margin:50px auto 0px auto;
     }
+    .form_submit_wrapper{
+        /* background-color:red; */
+        text-align: center;
+    }
+    #form_submit{
+        margin:20px auto 0px auto;
+    }
     .service_item_container{
         -ms-flex-wrap:wrap;
             flex-wrap:wrap;
@@ -617,5 +755,62 @@ footer {
         background-color: white;
         margin-bottom:50px;
         margin-top:0px;
+    }
+    #form_container{
+        border:1px solid orange;
+        width:380px;
+        height:auto;
+    }
+    #form_passenger_container{
+        height:auto;
+        border:none;
+    }
+    /* .active{
+        height:1000px; 
+        border:1px solid red;
+        background-color: red;
+    } */
+    .form_passenger_header_container{
+        width:100%;
+        height:auto;
+        padding:0px;
+        text-align: center;
+    }
+   
+    .form_passenger_header_container h2{
+        font-size:24px;
+        height:auto;
+        margin:0px auto;
+    }
+    .form_content_container:nth-of-type(1),.form_content_container:nth-of-type(2) {
+        float:none;
+        display:block;
+        width:90%;
+        height:auto;
+        margin:20px auto 0px auto;
+        padding:0px;
+        /* border:1px solid red; */
+    }
+
+    input[type=text]{
+        font-size:24px;
+    }
+    .email_label, .passengerAmount_label{
+        font-size:24px;
+    }
+    .form_content_container:nth-of-type(3){
+        /* border:1px solid red; */
+        width: 90%;
+        margin:0px auto;
+    }
+    .form_option_container{
+        width:100%;
+    }
+    #tripType_label{
+        font-size:24px;
+    }
+    #form_location_container{
+        display:block;
+        margin-top:50px;
     }
 }
