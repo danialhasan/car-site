@@ -23,7 +23,9 @@ body {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 }
-
+.btn_link:active{
+    text-decoration: none;
+}
 .bg-black {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -142,6 +144,11 @@ nav {
     border: 2px solid white;
     font-weight: bold;
     font-family: 'PT Serif', serif;
+    transition-duration: 0.4s;
+}
+.primary-btn:hover{
+    background-color:white;
+    color:black;
 }
 .form_submit_wrapper{
     width:100%;
@@ -150,6 +157,7 @@ nav {
 }
 #form_submit{
     margin:20px 40px;
+    /* margin-bottom:20px; */
     /* float:right; */
 }
 .main-image {
@@ -271,18 +279,16 @@ nav {
 }
 
 .form_passenger_header_container {
-    font-weight: bold;
-    line-height: 100px;
     padding-left: 58px;
-    font-family: 'PT Serif', serif;
     border-bottom: 2px solid white;
     background-color: rgba(0, 0, 0, 0.5);
-
+    font-family: 'PT Serif', serif;
+    font-weight: bold;
+    line-height: 80px;
 }
 
 .form_passenger_header_container h2 {
-    font-size: 36px;
-    /* only 36px when this part of form is open */
+    font-size: 24px;
 }
 .form_location_header_container{
     background-color: rgba(0, 0, 0, 0.5);
@@ -313,12 +319,15 @@ nav {
     margin-right:40px;
     margin-top:28px;
 }
-.form_content_container:nth-of-type(3){
+.form_content_container:nth-of-type(3), .form_content_container:nth-of-type(4){
     clear:both;
     margin:0px auto;
     padding-top:20px;
     /* border:1px solid yellow; */
     width:750px;
+}
+.location_content_container{
+    width:40%;
 }
 #tripType_label{
     font-family:"Open Sans", sans-serif;
@@ -362,6 +371,9 @@ nav {
     padding-left:10px;
     margin-top:10px;
 }
+.location_input_icon{
+    width:100%;
+}
 /* .input_icon:first-of-type{
     email part of form 
     float:left;
@@ -370,7 +382,7 @@ nav {
     margin-left:60px;
 } */
 
-.email_label{
+.email_label,.passengerAmount_label, .date_label, .time_label, .pickup_location_label, .dropoff_location_label{
     display:block;
     /* float:left; */
     /* margin-top:28px; */
@@ -384,22 +396,13 @@ nav {
     margin-right:0px;
     margin-top:10px;
 }
-.passengerAmount_label{
-    display:block;
-    /* float:right; */
-    /* margin-top:28px;
-    margin-left:58px; */
-    font-family:"Open Sans", sans-serif;
-    font-size:36px;
-}
 .input_icon i{
     line-height: 50px;
     /* border:1px solid red; */
     margin:0;
-    padding:0;
+    padding-left:10px;
 }
-
-input[type=text]{
+input[type=email], input[type=number]{
     /* width:330px;
     height:50px; */
     /* border:2px solid white;
@@ -419,14 +422,70 @@ input[type=text]{
     height:100%;
     width:270px;
     background-color:rgba(0, 0, 0, 0);
-    
 }
-.active {
+input[type=date], input[type=time]{
+    border:none;
+    background-color:rgba(0, 0, 0, 0);
+    font-family:"Open Sans", sans-serif;
+    font-size:24px;
+    color:white;
+    padding:0 0px 0 10px;
+    margin:0;
+    height:100%;
+    width:95%;
+    /* margin-right:20px; */
+    background-color:rgba(0, 0, 0, 0);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+}
+input[type=text]{
+    border:none;
+    background-color:rgba(0, 0, 0, 0);
+    font-family:"Open Sans", sans-serif;
+    font-size:24px;
+    color:white;
+    padding:0 0 0 10px;
+    margin:0;
+    height:100%;
+    width:270px;
+    background-color:rgba(0, 0, 0, 0);
+}
+/* .input_icon:last-of-type{
+    width:100%;
+    padding-left:0px;
+} */
+
+/* .pickupLocationInput{
+    width:100%;
+} */
+.active_header{
     /* height: 502px; */
+    display:block;
+    line-height:100px !important;
+    /* only using !important because the header NEEDS to take these styles when its active. It MUST override the 
+       default styling of the header and h2. 
+    */
+}
+.active_header h2{
+    font-size:36px !important;
 }
 .active_content{
     display:block;
 }
+.non_active_header{
+    font-size:24px;
+    height:auto;
+    /* WIP */
+}
+.non_active_content{
+    display:none;
+}
+
 .rates-header {
     font-size: 36px;
     font-family: 'PT Serif',
@@ -672,7 +731,7 @@ footer {
         text-align: center;
     }
     #form_submit{
-        margin:20px auto 0px auto;
+        margin:20px auto 20px auto;
     }
     .service_item_container{
         -ms-flex-wrap:wrap;
@@ -782,24 +841,31 @@ footer {
         height:auto;
         margin:0px auto;
     }
-    .form_content_container:nth-of-type(1),.form_content_container:nth-of-type(2) {
+    .form_content_container:nth-of-type(1),.form_content_container:nth-of-type(2),.form_content_container:nth-of-type(3),.form_content_container:nth-of-type(4) {
         float:none;
         display:block;
         width:90%;
         height:auto;
         margin:20px auto 0px auto;
         padding:0px;
-        /* border:1px solid red; */
     }
-
+    /* .form_content_container:last-of-type{
+        width:90%;
+    } */
     input[type=text]{
         font-size:24px;
+        /* width:100%; */
     }
-    .email_label, .passengerAmount_label{
+    .location_input_icon{
+        padding-left:0px;
+    }
+    /* .location_input_icon{
+        width:100%;
+    } */
+    .email_label, .passengerAmount_label, .date_label, .time_label, .pickup_location_label, .dropoff_location_label{
         font-size:24px;
     }
     .form_content_container:nth-of-type(3){
-        /* border:1px solid red; */
         width: 90%;
         margin:0px auto;
     }
