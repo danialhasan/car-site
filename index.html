@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/a49e873e34.js" crossorigin="anonymous"></script>
     <link href="reset.css" type="text/css" rel="stylesheet">
     <link href="style.css" type="text/css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-git2.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-git2.js"></script> -->
 
 </head>
 
@@ -18,7 +18,7 @@
         <div class="logo-container">
             <h1>LOGO</h1>
         </div>
-        <div class="burger"><img src="assets/icons/Vector.png"/></div>
+        <div class="burger"><img src="assets/icons/Vector.png" /></div>
         <div class="link-container">
             <ul>
                 <li>Our Services</li>
@@ -79,7 +79,7 @@
     <h2 class="form-header">Book Trip</h2>
     <!-- form_container WORK IN PROGRESS -->
     <div id="form_container">
-        <div id="form_passenger_container" >
+        <div id="form_passenger_container">
             <div class="form_passenger_header_container active_header" id="form_passenger_header_container_id">
                 <h2>(1/2) Passenger Info</h2>
             </div>
@@ -92,33 +92,38 @@
                             <input required type="email" id="emailInput" name="email" placeholder="Email...">
                         </div>
                     </div>
-        
+
                     <div class="form_content_container">
-                        <label id="passengerAmount" for="passengerAmount" class="passengerAmount_label">Passenger Amount:</label>
+                        <label id="passengerAmount" for="passengerAmount" class="passengerAmount_label">Passenger
+                            Amount:</label>
                         <div class="input_icon">
                             <i class="far fa-user"></i>
-                            <input required type="number" max="8" id="passengerInput" name="passengerAmount" placeholder="Passenger Amount...">
-                        </div> 
+                            <input required type="number" max="8" id="passengerInput" name="passengerAmount"
+                                placeholder="Passenger Amount...">
+                        </div>
                     </div>
-            
+
                     <div class="form_content_container">
                         <label for="tripType" id="tripType_label">Trip Type</label>
                         <div class="form_option_container">
-                            
+
                             <div class="option_container">
-                            <input type="radio" id="option1" name="tripType" value="option1" onclick="radioBtnValue(this.value)" required>
-                            <!-- required attr only needed on one radiobutton, since they all share the same name. -->
-                            <label for="option1">Option 1</label>
+                                <input type="radio" id="option1" name="tripType" value="option1"
+                                    onclick="radioBtnValue(this.value)" required>
+                                <!-- required attr only needed on one radiobutton, since they all share the same name. -->
+                                <label for="option1">Option 1</label>
                             </div>
 
                             <div class="option_container">
-                            <input type="radio" id="option2" name="tripType" value="option2" onclick="radioBtnValue(this.value)" required>
-                            <label for="option2">Option 2</label>
+                                <input type="radio" id="option2" name="tripType" value="option2"
+                                    onclick="radioBtnValue(this.value)" required>
+                                <label for="option2">Option 2</label>
                             </div>
 
                             <div class="option_container">
-                            <input type="radio" id="option3" name="tripType" value="option3" onclick="radioBtnValue(this.value)" required>
-                            <label for="option3">Option 3</label>
+                                <input type="radio" id="option3" name="tripType" value="option3"
+                                    onclick="radioBtnValue(this.value)" required>
+                                <label for="option3">Option 3</label>
                             </div>
                         </div>
                     </div>
@@ -132,7 +137,7 @@
             <div class="form_location_header_container non_active_header" id="form_location_header_container_id">
                 <h2>(2/2) Location Info</h2>
             </div>
-            <form method="GET" id="locationForm">
+            <form method="GET" id="locationForm" action="">
                 <div class="form_location_content_container non_active_content" id="form_location_content_container_id">
 
                     <div class="form_content_container location_content_container">
@@ -142,30 +147,35 @@
                             <input required type="date" id="dateInput" name="date" min="2020-10-11" value="2020-10-11">
                         </div>
                     </div>
-        
+
                     <div class="form_content_container location_content_container">
                         <label id="time" for="time" class="time_label">Pickup time:</label>
+                        <!-- TODO: make time icon cross-browser -->
                         <div class="input_icon">
                             <!-- <i class="far fa-user"></i> -->
-                            <input required type="time"  id="timeInput" name="time" placeholder="Time...">
-                        </div> 
+                            <input required type="time" id="timeInput" name="time" placeholder="Time...">
+                        </div>
                     </div>
-            
+
                     <div class="form_content_container">
-                        <label for="pickupLocation" id="pickupLocation_label" class="pickup_location_label">Pickup Location</label>
+                        <label for="pickupLocation" id="pickupLocation_label" class="pickup_location_label">Pickup
+                            Location</label>
                         <div class="input_icon location_input_icon">
                             <i class="fas fa-plane-departure"></i>
-                            <input required type="text" id="pickupLocationInput" name="pickupLocation" class="pickupLocationInput" placeholder="Pickup location...">
+                            <input required type="text" id="pickupLocationInput" name="pickupLocation"
+                                class="pickupLocationInput" placeholder="Pickup location...">
                         </div>
                     </div>
                     <div class="form_content_container dropoff_content_container">
-                        <label for="dropoffLocation" id="dropoffLocation_label" class="dropoff_location_label">Dropoff Location</label>
+                        <label for="dropoffLocation" id="dropoffLocation_label" class="dropoff_location_label">Dropoff
+                            Location</label>
                         <div class="input_icon location_input_icon">
                             <i class="fas fa-plane-arrival"></i>
-                            <input required type="text" id="dropoffLocationInput" name="dropoffLocation" class="dropoffLocationInput" placeholder="Dropoff location...">
+                            <input required type="text" id="dropoffLocationInput" name="dropoffLocation"
+                                class="dropoffLocationInput" placeholder="Dropoff location...">
                         </div>
                     </div>
-                
+
                     <div class="form_submit_wrapper">
                         <input type="submit" class="primary-btn" id="form_submit" value="Submit">
                     </div>
