@@ -1,12 +1,4 @@
 /*jshint esversion: 6 */
-/*
-    First form on submit:
-    1. validate form. 
-    2. gather data into object.
-    3. close form_passenger_content_container and open form_location_content_container. 
-       make passenger header smaller and location header big. 
-     
-*/
 var formPassengerContentContainer = document.getElementById("form_passenger_content_container_id");
 var formLocationContentContainer = document.getElementById("form_location_content_container_id");
 var formPassengerHeaderContainer = document.getElementById("form_passenger_header_container_id");
@@ -52,7 +44,7 @@ function gatherPassengerFormValues() {
     //     console.log(dataArr[value]);
     // }
 }
-async function myFunction() {
+async function postDataToServer() {
     const data = {
         fname: "thisisthefirstname",
         lname: "thisisthelastname"
@@ -69,11 +61,16 @@ async function myFunction() {
     //fetch(‘http://localhost:PORT_OF_NODE_SERVER/api', options);
     const response = await fetch('http://127.0.0.1:5501/api', options);
     const jsonData = await response.json();
+    /*
+     the server receives the post request and responds
+     with the data that was sent, for dev purposes. 
+     This is why it's called jsonData.
+     */
     console.log(jsonData);
     console.log("fetch sent")
 }
 
-function gatherLocationFormValues() {
+function gatherFormValues() {
     dataArr.push(dateInput.value, timeInput.value, pickupInput.value, dropoffInput.value);
     // for (var value in dataArr) {
     //     console.log("Array value: " + dataArr[value]);
@@ -95,7 +92,7 @@ function gatherLocationFormValues() {
     };
     var json = JSON.stringify(dataObj);
     // acquired json, now send to server.
-    console.log("gatherLocationFormValues: " + json);
+    console.log("gatherFormValues: " + json);
 }
 
 //acquired all form input and placed into an array and an object. Now, send to server. 
@@ -195,9 +192,9 @@ passengerForm.addEventListener("submit", (e) => {
 locationForm.addEventListener("submit", (e) => {
     e.preventDefault();
     // to prevent passenger form from actually submitting
-    gatherLocationFormValues();
+    gatherFormValues();
     //gather form values
     // formSubmission();
     //change classes and forms. 
-    myFunction();
+    postDataToServer();
 });

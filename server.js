@@ -1,6 +1,17 @@
+/**
+ * NOTE: whats currently happening
+ * 
+ */
+
+
+
+
+
+
+
 const express = require("express");
 const app = express();
-// const datastore = require("nedb");
+const datastore = require("nedb");
 
 app.listen(5501, () => console.log("listening to port 5501"));
 app.use(express.static('public'));
@@ -10,6 +21,14 @@ app.use(express.json({
 }))
 // var database = new datastore('database.db');
 // database.loadDatabase();
+
+var database = new datastore('database.db');
+database.loadDatabase();
+
+//sub minutes from current time
+function submin(dt, minutes) {
+    return new Date(dt.getTime() - minutes * 60000);
+}
 
 var i = 0;
 app.use((req, res, next) => {
@@ -36,12 +55,12 @@ app.post('/api', (req, res) => {
     // databaseArr.push("Requests: " + i + " , data: " + req.body.fname + ", " + req.body.lname);
 
     // database.insert(data);
-
+    console.log("req.body: ");
     console.log(req.body);
-    if (req.body.fname || req.body.lname) {
-        console.log("First name: " + req.body.fname);
-        console.log("Last name: " + req.body.lname);
-    }
+    // if (req.body.fname || req.body.lname) {
+    //     console.log("First name: " + req.body.fname);
+    //     console.log("Last name: " + req.body.lname);
+    // }
     // console.table(database)
 
     res.json({
