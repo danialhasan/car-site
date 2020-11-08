@@ -45,6 +45,7 @@ function gatherPassengerFormValues() {
     // }
 }
 async function postDataToServer() {
+    gatherFormValues();
     const data = {
         fname: "thisisthefirstname",
         lname: "thisisthelastname"
@@ -56,10 +57,10 @@ async function postDataToServer() {
             'content-type': 'application/json',
             'origin': 'http://localhost:8000',
         },
-        body: JSON.stringify(dataObj)
+        body: JSON.stringify(dataObj) //stringify object containing form values.
     };
     //fetch(‘http://localhost:PORT_OF_NODE_SERVER/api', options);
-    const response = await fetch('http://127.0.0.1:5501/api', options);
+    const response = await fetch('http://127.0.0.1:5501/api', options); //POST REQUEST
     const jsonData = await response.json();
     /*
      the server receives the post request and responds
@@ -71,24 +72,30 @@ async function postDataToServer() {
 }
 
 function gatherFormValues() {
-    dataArr.push(dateInput.value, timeInput.value, pickupInput.value, dropoffInput.value);
-    // for (var value in dataArr) {
-    //     console.log("Array value: " + dataArr[value]);
-    // }
-    //     for (var property in dataObj) {
-    //         console.log(`${property}: ${dataObj[property]}`);
-    // }
-    // console.log(dataObj['email']);
-
     //set dataObj properties
+    // dataObj = {
+    //     email: email.value,
+    //     passengerAmount: passengerAmount.value,
+    //     tripType: passengerRadioBtnValue, //no .value needed because it's from radio button
+    //     date: dateInput.value,
+    //     time: timeInput.value,
+    //     pickup: pickupInput.value,
+    //     dropoff: dropoffInput.value
+    // };
+
+    /**
+     * NOTE: dataObj is being put to static valuesfor the sole purpose of making development easier.
+     * When development for this feature is done, put dataObj as being equal to the commented portion above:
+     * equal to form values. 
+     */
     dataObj = {
-        "email": email.value,
-        "passengerAmount": passengerAmount.value,
-        "tripType": passengerRadioBtnValue, //no .value needed because it's from radio button
-        "date": dateInput.value,
-        "time": timeInput.value,
-        "pickup": pickupInput.value,
-        "dropoff": dropoffInput.value
+        email: "test@email.com",
+        passengerAmount: 4,
+        tripType: "triptype1", //no .value needed because it's from radio button
+        date: "2020-11-15",
+        time: "18:50",
+        pickup: "pickup1",
+        dropoff: "dropoff"
     };
     var json = JSON.stringify(dataObj);
     // acquired json, now send to server.
@@ -192,8 +199,10 @@ passengerForm.addEventListener("submit", (e) => {
 locationForm.addEventListener("submit", (e) => {
     e.preventDefault();
     // to prevent passenger form from actually submitting
-    gatherFormValues();
+
+    // gatherFormValues();
     //gather form values
+
     // formSubmission();
     //change classes and forms. 
     postDataToServer();
