@@ -1,19 +1,18 @@
-/**
- * NOTE: whats currently happening
- * 
- */
-
-
-
-
-
-
+//TODO
+// [] server-side form validation on post request, to prevent MITM attacks. (security)
+// [] server-side header and https certificate validation.
+// [] Lock admin page with secure username and password.
+// [] Store admin user and password (or just username) in local/browser storage.
+//QUESTIONS
+// - Where will we host the server.js? 
+// - Where will we host the database.db?
+// - Where will the backend admin panel login username and password files be hosted:
 
 const express = require("express");
 const app = express();
 const datastore = require("nedb");
-
-app.listen(5501, () => console.log("listening to port 5501"));
+const port = 5501;
+app.listen(port, () => console.log(`listening to port ${port}`));
 app.use(express.static('public'));
 app.use(express.json({
     limit: '100mb',
@@ -46,6 +45,7 @@ app.use((req, res, next) => {
 
 })
 app.get('/allindexes', function (req, res) {
+    console.log("request received")
     database.find({
         timestamp: {
             $gt: 0
@@ -57,6 +57,7 @@ app.get('/allindexes', function (req, res) {
             docs
         });
     })
+    console.log("data sent");
 
 })
 app.get('/latestindex1min', (req, res) => {
@@ -95,8 +96,10 @@ app.get('/latestindex2min', (req, res) => {
     })
 })
 app.get('/delete', (req, res) => {
+    console.log("Wiping database...")
     database.remove({}, {
         multi: true
+        // debugger;
     }, (err, numRemoved) => {
         res.json({
             message: "Database wiped."

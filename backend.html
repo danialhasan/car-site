@@ -33,7 +33,7 @@
         #data_container {
             width: auto;
             height: auto;
-            max-width: 250px;
+            max-width: 350px;
             max-height: 550px;
             background-image: linear-gradient(90deg, #023e8a, #0096c7);
             border-radius: 25px;
@@ -62,8 +62,9 @@
     <button onclick="returnAllIndexes()">All entries</button>
     <button onclick="returnLatestIndex1Minute()">All entries from 1 minute ago</button>
     <button onclick="returnLatestIndex2Minute()">All entries from 2 minutes ago</button>
-
+    <!-- <button onclick="generateCSV()">Generate CSV</button> -->
     <button onclick="deleteIndexes()">Delete all indexes</button>
+    <button onclick="removeDuplicateElements()">Clear Cards</button>
     <button style="background-color: red; color:white;" onclick="createCard()">Create card</button>
     <a href="/index.html">
         <button class="btn_backend">Frontend</button>
@@ -98,229 +99,8 @@
             <p id="data__id">database id: placeholder</p>
         </div>
     </template>
-    <script>
-        'use strict';
-        const demo = document.getElementById("demo");
-        // const container = document.getElementById("data_container");
-        // const fname_p = document.getElementById("data_fname");
-        // const lname_p = document.getElementById("data_lname");
-        // const timestamp_p = document.getElementById("data_timestamp");
-        // const _id_p = document.getElementById("data__id");
-        var objVal;
-        async function deleteIndexes() {
-            fetch('http://127.0.0.1:5501/delete')
-                .then((res) => {
-                    res.json().then((json) => {
-                        console.log(json.message)
-                    })
-                })
-        }
+    <script src="scripts/backend_script.js"></script>
 
-        async function returnAllIndexes() {
-            const response = await fetch('http://127.0.0.1:5501/allindexes');
-            const jsonData = await response.json().catch((err) => {
-                //NOTE: just noticed the jsonData response variable is actually a constant.
-                //So far, no problems. If there are problems in the future, look to this. 
-                //Most likely wont be a problem as long as you don't try to change the
-                //value of it later on. 
-                console.log("Fetching from server didn't work: " + err)
-            });
-            // debugger;
-            if (jsonData.docs.length == 0) {
-                console.log(
-                    "Warning: Cannot find any entries in database. Fetch response.docs array length == 0."
-                );
-                demo.textContent = 'There are no entries in the database. ';
-                return;
-            }
-            console.log(jsonData.docs);
-            console.log(jsonData.docs[jsonData.docs.length - 1].fname);
-            for (let i = 0; i < jsonData.docs.length; i++) {
-                console.log(i)
-            }
-            // console.log(jsonData._id);
-            demo.textContent = 'Latest entries: ' + JSON.stringify(jsonData.docs);
-            console.log(jsonData);
-
-            //fill temporary card with last entry data
-
-            // fname_p.textContent = "First name: " + jsonData.docs[jsonData.docs.length - 1].fname;
-            // lname_p.textContent = "Last name: " + jsonData.docs[jsonData.docs.length - 1].lname;
-            // timestamp_p.textContent = "Timestamp: " + jsonData.docs[jsonData.docs.length - 1].timestamp;
-            // _id_p.textContent = "Database ID: " + jsonData.docs[jsonData.docs.length - 1]._id;
-
-            objVal = Object.values(jsonData);
-            /*
-            objVal = array of jsonData object values. jsonData.docs is already an array, this doesn't do anything
-            because its using object.values on something that isn't an object. 
-
-            it replaces the keys, in 'key-value pairs' with array indices. 
-            
-            It makes more sense to use Object.values on jsonData, which is an object. THis returns an array
-            of its values, which means that it returns an array consisting of arrays. The internal array 
-            is at index 0 of the external array. 
-
-            Object.values(jsonData) = [
-                [
-                    {document1},
-                    {document2},
-                    {documentx}
-                ]
-            ]
-
-            */
-            console.log(objVal);
-            console.log("jsonData.docs: " + jsonData.docs);
-            console.log("jsonData.docs: " + JSON.stringify(jsonData.docs[0]));
-            //only use JSON.stringify(jsonData.docs[0]) for displaying to console.
-
-
-            createCard(objVal[0]);
-            //objVal[0] is the jsonData.docs array that has the entries
-        }
-        // class Card {
-        //     constructor(firstname, lastname, timestamp, _id) {
-        //         this.firstname = firstname;
-        //         this.lastname = lastname;
-        //         this.timestamp = timestamp;
-        //         this._id = _id;
-        //     }
-        // }
-        // var myArr = [1, 2, 3];
-        function removeDuplicateElements() {
-            // var element = document.getElementsByClassName("data_container");
-            // console.log(element);
-            // // element.parentNode.removeChild(element);
-
-            const elements = document.getElementsByClassName("data_container");
-
-            while (elements.length > 0) elements[0].remove(); //Wonderfully simple solution.
-            /** HOW THIS WORKS
-             * the 'elements' constant is an array of all elements with a class name of "data-container". 
-             * While the array length is greater than 0 (when there are still elements on the page with
-             * a class of 'data-container') remove the first index of that array.
-             */
-        }
-
-        function createCard(x) {
-            removeDuplicateElements();
-            /*
-            --DEBUG NOTES--
-            Sometimes the error is not in the code you're currently writing,
-            but instead in code that you wrote some time ago and forgot about.
-            */
-            //values are equal to the latest database entry
-
-            console.log("createCard called");
-            console.log(x);
-            console.log("x.length: " + x.length);
-            // This is because x is a json string version of the objVal array
-            var temp, item, itemChild, a, i, j, k;
-            var k = 0;
-            temp = document.getElementsByTagName("template")[0];
-            //get the div element from the template:
-            item = temp.content.querySelector("div");
-
-
-            for (i = 0; i < x.length; i++) {
-                var templateDiv = document.importNode(item, true); //div in template, data-container
-                var itemChild = templateDiv.childNodes;
-                var itemChildArr = Array.from(itemChild);
-                console.log("%cNEW ITERATION",
-                    "color:white; background-color:red; padding:10px 10px; ")
-                //NOTE: FOR LOOP IS ITERATING WITH ARRAY VERSION OF ITEMCHILD
-                console.log(x[i]);
-
-                for (var j = 0; j < itemChild.length; j++) {
-                    switch (j) {
-                        case 0:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Email: " + x[i].email;
-                            break;
-                        case 2:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Passenger amount: " + x[i]
-                                .passengerAmount;
-                            break;
-                        case 4:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Trip Type: " + x[i].tripType;
-                            break;
-                        case 6:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Date: " + x[i].date;
-                            break;
-                        case 8:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Time: " + x[i].time;
-                            break;
-                        case 10:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Pickup: " + x[i].pickup;
-                            break;
-
-                        case 12:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Dropoff: " + x[i].dropoff;
-                            break;
-
-                        case 14:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Timestamp: " + x[i].timestamp;
-                            break;
-
-                        case 16:
-                            itemChild[j].nextSibling.childNodes[0].textContent = "Database ID: " + x[i]._id;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-
-                // console.log("i value: " + i);
-                // console.log("X VALUE: ");
-                console.log(x);
-                console.log("x length: " + x.length);
-
-                // console.log(itemChild);
-                document.body.appendChild(templateDiv);
-                console.log("Card Appended");
-            }
-            console.log("Cards created!");
-        }
-        async function returnLatestIndex1Minute() {
-
-            const response = await fetch('http://127.0.0.1:5501/latestindex1min');
-            const jsonData = await response.json().catch((err) => {
-                console.log("Fetching from server didn't work: " + err)
-            });
-            if (jsonData.docs.length == 0) {
-                console.log(
-                    "Warning: Cannot find any entries in database. Fetch response.docs array length == 0."
-                );
-                demo.textContent = 'There are no entries from 1 minute ago in the database. ';
-                return;
-            }
-            console.log(jsonData.docs);
-            demo.textContent = 'Latest entry: ' + JSON.stringify(jsonData);
-            objVal = Object.values(jsonData)
-
-            createCard(objVal[0]);
-
-        }
-
-        async function returnLatestIndex2Minute() {
-
-            const response = await fetch('http://127.0.0.1:5501/latestindex2min');
-            const jsonData = await response.json().catch((err) => {
-                console.log("Fetching from server didn't work: " + err)
-            });
-            if (jsonData.docs.length == 0) {
-                console.log(
-                    "Warning: Cannot find any entries from 2 minutes ago in database. Fetch response.docs array length == 0."
-                );
-                demo.textContent = 'There are no entries in the database from 2 minutes ago. ';
-                return;
-            }
-            console.log(jsonData);
-            demo.textContent = 'Latest entry: ' + JSON.stringify(jsonData);
-            objVal = Object.values(jsonData)
-
-            createCard(objVal[0]);
-        }
-    </script>
 </body>
 
 </html>

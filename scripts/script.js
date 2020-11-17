@@ -28,34 +28,16 @@ function radioBtnValue(x) {
 }
 
 function gatherPassengerFormValues() {
-    // console.log("Email: " + email.value);
-    // console.log("Passengers: " + passengerAmount.value);
-    // console.log("Trip type: " + passengerRadioBtnValue);
-    // console.log("date: " + dateInput.value);
-    // console.log("time: " + timeInput.value);
-    // console.log("pickup: " + pickupInput.value);
-    // console.log("dropoff: " + dropoffInput.value);
-
-
     dataArr = [email.value, passengerAmount.value, passengerRadioBtnValue];
-    // console.log("");
-
-    // for(var value in dataArr){
-    //     console.log(dataArr[value]);
-    // }
 }
 async function postDataToServer() {
     gatherFormValues();
-    const data = {
-        fname: "thisisthefirstname",
-        lname: "thisisthelastname"
-    }
     const options = {
         method: 'POST',
         withCredentials: false,
         headers: {
             'content-type': 'application/json',
-            'origin': 'http://localhost:8000',
+            'origin': 'http://localhost:8080',
         },
         body: JSON.stringify(dataObj) //stringify object containing form values.
     };
@@ -73,30 +55,31 @@ async function postDataToServer() {
 
 function gatherFormValues() {
     //set dataObj properties
-    // dataObj = {
-    //     email: email.value,
-    //     passengerAmount: passengerAmount.value,
-    //     tripType: passengerRadioBtnValue, //no .value needed because it's from radio button
-    //     date: dateInput.value,
-    //     time: timeInput.value,
-    //     pickup: pickupInput.value,
-    //     dropoff: dropoffInput.value
-    // };
+    dataObj = {
+        email: email.value,
+        passengerAmount: passengerAmount.value,
+        tripType: passengerRadioBtnValue, //no .value needed because it's from radio button
+        date: dateInput.value,
+        time: timeInput.value,
+        pickup: pickupInput.value,
+        dropoff: dropoffInput.value
+    };
 
     /**
-     * NOTE: dataObj is being put to static valuesfor the sole purpose of making development easier.
+     * NOTE: dataObj is being put to static values for the sole purpose of making development easier.
      * When development for this feature is done, put dataObj as being equal to the commented portion above:
      * equal to form values. 
      */
-    dataObj = {
-        email: "test@email.com",
-        passengerAmount: 4,
-        tripType: "triptype1", //no .value needed because it's from radio button
-        date: "2020-11-15",
-        time: "18:50",
-        pickup: "pickup1",
-        dropoff: "dropoff"
-    };
+
+    // dataObj = {
+    //     email: "test@email.com",
+    //     passengerAmount: 4,
+    //     tripType: "triptype1", //no .value needed because it's from radio button
+    //     date: "2020-11-15",
+    //     time: "18:50",
+    //     pickup: "pickup1",
+    //     dropoff: "dropoff"
+    // };
     var json = JSON.stringify(dataObj);
     // acquired json, now send to server.
     console.log("gatherFormValues: " + json);
