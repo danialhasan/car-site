@@ -5,6 +5,7 @@ var formPassengerHeaderContainer = document.getElementById("form_passenger_heade
 var formLocationHeaderContainer = document.getElementById("form_location_header_container_id");
 
 var formSubmitBtn = document.getElementById("form_submit");
+var locationFormSubmitBtn = document.getElementsByClassName("locationFormSubmit");
 var bookNowBtn = document.getElementsByClassName("book-now-btn");
 
 var passengerForm = document.getElementById("passengerForm");
@@ -21,10 +22,22 @@ var dropoffInput = document.getElementById("dropoffLocationInput");
 var passengerRadioBtnValue;
 var dataArr;
 var dataObj;
+var option2 = document.getElementById("option2")
 
 function radioBtnValue(x) {
     passengerRadioBtnValue = x;
-    return x;
+}
+
+function setPlaceholdersDev() {
+    email.value = "test@email.com";
+    passengerAmount.value = 4;
+    option2.checked = true;
+    formSubmitBtn.click();
+    timeInput.value = "21:15";
+    dateInput.value = "2020-12-25";
+    pickupInput.value = "CN Tower";
+    dropoffInput.value = "Pearson Airport";
+    locationFormSubmitBtn[0].click();
 }
 
 function gatherPassengerFormValues() {
@@ -43,14 +56,15 @@ async function postDataToServer() {
     };
     //fetch(‘http://localhost:PORT_OF_NODE_SERVER/api', options);
     const response = await fetch('http://127.0.0.1:5501/api', options); //POST REQUEST
+    console.log("fetch sent");
     const jsonData = await response.json();
+
     /*
      the server receives the post request and responds
      with the data that was sent, for dev purposes. 
      This is why it's called jsonData.
      */
     console.log(jsonData);
-    console.log("fetch sent")
 }
 
 function gatherFormValues() {

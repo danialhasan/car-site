@@ -1,8 +1,17 @@
 //TODO
 // [] server-side form validation on post request, to prevent MITM attacks. (security)
-// [] server-side header and https certificate validation.
+// [] server-side https certificate validation.
 // [] Lock admin page with secure username and password.
 // [] Store admin user and password (or just username) in local/browser storage.
+// [] Payment Processing
+/* [] Create payment algorithm that determines price based on:
+        - Passenger Amount
+        - Distance between pickup and dropoff
+        - Vehicle type
+
+//REVIEW
+// [x] server-side header validation.
+*/
 //QUESTIONS
 // - Where will we host the server.js? 
 // - Where will we host the database.db?
@@ -12,6 +21,7 @@ const express = require("express");
 const app = express();
 const datastore = require("nedb");
 const port = 5501;
+const expectedOrigin = "http://localhost:8080"; //NOTE: change to domain after site is live
 app.listen(port, () => console.log(`listening to port ${port}`));
 app.use(express.static('public'));
 app.use(express.json({
@@ -32,7 +42,7 @@ function submin(dt, minutes) {
 var i = 0;
 app.use((req, res, next) => {
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", expectedOrigin);
     res.setHeader("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
     );
@@ -107,14 +117,34 @@ app.get('/delete', (req, res) => {
     })
 })
 app.post('/api', (req, res) => {
+    var data, dataObjArr;
     console.log("received request");
     i++;
-    var data = req.body;
+
+    // Server side form validation
+
+    data = req.body;
+    // Step 1: Check Headers
+    console.log("Request Headers:");
+    console.log(req.headers);
+    if (req.headers.origin == expectedOrigin) {
+        console.log("Received from expected origin");
+    }
+    // Step 2: Check Request Content Length
+    if ((req.headers['content-length']) > 500) {
+        console.log("request content length is too large.")
+    }
+    // Step 3: Check Request Body Values Array Length
+    console.log(data);
+    dataObjArr = Object.values(data);
+    // length of this object should always be 7, because the form has 7 fields.
+    if (dataObjArr.length == 7) {
+        console.log(`Request body length is ${dataObjArr.length}, passes security check.`)
+    }
     const timestamp = Date.now();
     data.timestamp = timestamp;
 
-    // databaseArr.push("Requests: " + i + " , data: " + req.body.fname + ", " + req.body.lname);
-
+    // Request data passed all security checks, insert into database. 
     database.insert(data);
     console.log("req.body: ");
     console.log(data);
@@ -126,10 +156,6 @@ app.post('/api', (req, res) => {
 
     res.json({
         status: 'success',
-        // timestamp: timestamp,
-        // firstname: req.body.fname,
-        // lastname: req.body.lname,
         data: data
-        // database: database
     })
 });
