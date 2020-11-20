@@ -2,7 +2,8 @@
 // [] server-side form validation on post request, to prevent MITM attacks. (security)
 // [] server-side https certificate validation.
 // [] Lock admin page with secure username and password.
-// [] Store admin user and password (or just username) in local/browser storage.
+// [] Implement BCRYPT
+// [] Store admin username in local/browser storage.
 // [] Payment Processing
 /* [] Create payment algorithm that determines price based on:
         - Passenger Amount
