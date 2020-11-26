@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+// INDEX.HTML SCRIPT
 var formPassengerContentContainer = document.getElementById("form_passenger_content_container_id");
 var formLocationContentContainer = document.getElementById("form_location_content_container_id");
 var formPassengerHeaderContainer = document.getElementById("form_passenger_header_container_id");

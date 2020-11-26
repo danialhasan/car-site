@@ -1,0 +1,11 @@
+ADMIN AUTH STEPS
+When user tries to access https://domain.com/backend, show login page if user isn't
+signed in. If they sign in, store information in session storage. 
+
+Idea: make the default state of the backend nodejs server, the login page. The dashboard 
+will be replaced by the actual backend html page. When someone tries to access server.js, 
+the website should return a CANNOT GET /SERVER error.
+
+
+idea: Take the backend.html and backend.js file from this project and place it in the login 
+project. Then, when the admin route is taken, the login project takes over.
